@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "./Navbar"
-import WelcomeText from "./WelcomeText";
+import WelcomeText from "../WelcomeText";
 
 const header = () => {
   return (
     <>
        <section className="bg-white">
-      <div className="container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row items-center lg:items-start">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start">
         {/* Left side - Text */}
         <div className="lg:w-1/2 text-center lg:text-left">
           <Navbar/>
@@ -17,8 +17,8 @@ const header = () => {
         <div
           className="lg:w-1/2 h-full bg-cover bg-right bg-no-repeat"
           style={{
-            backgroundImage: `url('/spa.png')`, // Replace with your image path
-            height: '785px', // Adjust height as necessary
+            backgroundImage: `url('/spa.png')`, // indsæt API-kald !!
+            height: '665px',
           }}
         >
         </div>

@@ -4,13 +4,14 @@ import Image from 'next/image'
 
 const page = () => {
   return (
-    <nav className=" text-black p-4">
+    <nav className=" text-black p-2">
     <div className="container mx-auto flex items-center justify-between">
       <div className="flex items-center">
       <Image
       src="/logo.png"
       height={26}
-      width={65}
+      width={55}
+      alt='logo'
       >
       </Image>
       </div>
@@ -20,7 +21,7 @@ const page = () => {
         <Link href="/Home" className="hover:text-gray-300">
           HOME
         </Link>
-        <Link href="/About" className="hover:text-gray-300">
+        <Link href="/pages/About" className="hover:text-gray-300">
           ABOUT
         </Link>
         <Link href="/Feature" className="hover:text-gray-300">
