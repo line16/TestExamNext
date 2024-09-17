@@ -8,11 +8,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        themify: ['var(--font-themify)'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 };

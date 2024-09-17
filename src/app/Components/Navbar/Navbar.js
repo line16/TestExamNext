@@ -1,11 +1,10 @@
-import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 const page = () => {
   return (
     <nav className=" text-black p-2">
-    <div className="container mx-auto flex items-center justify-between">
+    <div className="container mx-auto flex justify-between items-end">
       <div className="flex items-center">
       <Image
       src="/logo.png"
@@ -17,11 +16,11 @@ const page = () => {
       </div>
 
       {/* Links */}
-      <div className="flex-1 flex justify-end space-x-9 font-semibold">
+      <div className="flex-1 flex font-semibold pl-9">
         <Link href="/Home" className="hover:text-gray-300">
           HOME
         </Link>
-        <Link href="/pages/About" className="hover:text-gray-300">
+        <Link href="/About" className="hover:text-gray-300">
           ABOUT
         </Link>
         <Link href="/Feature" className="hover:text-gray-300">
