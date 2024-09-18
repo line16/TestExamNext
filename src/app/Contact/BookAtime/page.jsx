@@ -18,9 +18,9 @@ const BookAtime = () => {
   return (
     <>
       <div className="flex flex-row justify-center py-7">
-        <div className="lg:w-2/6 bg-rose-100 h-auto">
-        <Image 
-        src="/spa.png" width={450} height={250}></Image></div>
+      <div className="lg:w-2/6 bg-rose-100 relative">
+    <Image src="/appointment-img.jpg" fill objectFit="cover" alt="appointment" />
+  </div>
 
         <div className="lg:w-4/6 bg-rose-100 py-2 pl-12 lg:pr-36">
           <form className="py-14">
