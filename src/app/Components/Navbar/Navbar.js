@@ -19,7 +19,7 @@ const Navbar = () => {
             {/* Logo */}
             <div>
               <Link href="/" className="flex items-center py-5 px-2">
-                <Image src="/logo.png" width={65} height={65}></Image>
+                <Image src="/logo.png" width={65} height={65} alt="logo"></Image>
               </Link>
             </div>
           </div>
