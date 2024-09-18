@@ -1,8 +1,16 @@
-import React from "react";
+"use client"
+import React, {useEffect} from "react";
 import Navbar from "./Navbar"
 import WelcomeText from "../WelcomeText";
+import useRequestData from "../../../../Hooks/useRequestData";
 
 const header = () => {
+  const { data, isLoading, error, makeRequest } = useRequestData();
+
+  useEffect(() => {
+    makeRequest("http://localhost:5029/hero/607c44b7fc16480e9c109f09");
+  }, []);
+
   return (
     <>
        <section className="bg-white">
@@ -15,10 +23,11 @@ const header = () => {
 
         {/* Right side - Image background */}
         <div
-          className="lg:w-1/2 h-full bg-cover bg-right bg-no-repeat"
+          className="lg:w-1/2 lg:block h-full bg-cover md:hidden sm:hidden hidden bg-right bg-no-repeat"
           style={{
-            backgroundImage: `url('/spa.png')`, // indsæt API-kald !!
-            height: '665px',
+            backgroundImage: `url("/spa.png")`,
+            height: '690px',
+            objectFit: 'contain'
           }}
         >
         </div>

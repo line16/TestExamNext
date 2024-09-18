@@ -28,15 +28,14 @@ const FrontpageService = () => {
             </figure>
           ))}
       </div>
-      <h3 className="text-center text-3xl font-semibold p-5 font-themify" >
+      <section className="text-center p-5">
+      <h3 className="font-semibold text-3xl p-2" >
         Popular Procedures
       </h3>
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut repudiandae
-        explicabo quasi assumenda architecto eius atque eligendi repellendus
-        quia sed. Consequatur nesciunt eveniet enim, rerum totam recusandae, ut
-        eius delectus iusto molestias ab tempore!
+      In the tradition of the deep cleansing, exfoliating and skin conditioning Leo Spa treatments originating in Morocco and Turkey, our SPA collection offers a luxurious, ultimately relaxing, truly holistic wellness experience.
       </p>
+      </section>
 
       <div className="flex flex-row justify-center items-center w-full flex-wrap">
       {data &&

@@ -11,19 +11,15 @@ const BookAtime = () => {
     makeRequest("http://localhost:5029/appointment/");
   }, []);
 
-  // useEffect(() => {
-  //   makeRequestPic("http://localhost:5029/treatment")
-  // }, [])
-
   return (
     <>
-      <div className="flex flex-row justify-center py-7">
-      <div className="lg:w-2/6 bg-rose-100 relative">
+      <div className="flex flex-row justify-center lg:py-5">
+      <div className="lg:w-2/6 bg-rose-100 relative md:hidden lg:block">
     <Image src="/appointment-img.jpg" fill objectFit="cover" alt="appointment" />
   </div>
 
-        <div className="lg:w-4/6 bg-rose-100 py-2 pl-12 lg:pr-36">
-          <form className="py-14">
+        <div className="lg:w-4/6 bg-rose-100 lg:py-2 lg:pl-12 lg:pr-36 md:w-full sm:w-full p-4">
+          <form className="lg:py-14">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* Name */}
               <div className="relative border-b-2 border-y-gray-300 w-full">

@@ -18,20 +18,18 @@ const Footer = () => {
       <figure>
         <Image src="/logo.png" height={26} width={85} alt="logo"></Image>
       </figure>
+    
+      {data &&(
+        <div className="text-gray-500 p-2">
+          <p>{data.name}</p>
+          <p>{data.openinghours}</p>
+          <p>telefon: {data.phone} <br />Email: {data.email}</p>
+          <address>{data.address}, {data.zipncity}</address>
+          <p>CVR: {data.cvr}</p>
+        </div>
+      ) }
 
-      {/* Check if data exists before mapping */}
-      {data && data.length > 0 ? (
-        data.map((item) => (
-          <div key={item._id} className="p-8">
-            <p className="text-xl">"{item.name}"</p>
-            <p className="mt-4 text-lg font-semibold">- {item.address}</p>
-          </div>
-        ))
-      ) : (
-        <p>No data available</p>
-      )}
-
-      <ul className="font-semibold m-auto text-center pt-7">
+      <ul className="font-semibold m-auto text-center pt-7 w-full flex flex-wrap">
         <li className="inline p-5 ">
           <Link href="/">HOME</Link>
         </li>

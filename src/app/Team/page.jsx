@@ -13,7 +13,8 @@ const Team = () => {
 
   return (
     <>
-      <h1 className="pt-16 text-center font-semibold text-3xl">
+    <div className="pt-12 text-center w-8/12 m-auto">
+      <h1 className="font-semibold text-3xl py-2">
         Experienced Team
       </h1>
       <p>
@@ -21,6 +22,7 @@ const Team = () => {
         exercitationem cupiditate vero nulla explicabo nihil nobis culpa tempora
         iure, non accusamus quibusdam?
       </p>
+    </div>
 
       <div className="flex flex-row justify-center items-start w-full flex-wrap">
         {data &&
