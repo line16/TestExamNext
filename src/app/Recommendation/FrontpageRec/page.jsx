@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import useRequestData from "../../../../Hooks/useRequestData";
 
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 function SimpleSlider() {
   const { data, isLoading, error, makeRequest } = useRequestData();
@@ -12,14 +10,6 @@ function SimpleSlider() {
   useEffect(() => {
     makeRequest("http://localhost:5029/recommendation/");
   }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
 
   return (
     <div className="bg-rose-50">
@@ -38,7 +28,7 @@ function SimpleSlider() {
       </Slider> */}
 
       {data && (
-        <Slider {...settings}>
+        <div>
           {data.map((data) =>(
           <div key={data._id}>
             <p>{data.name}</p>
@@ -46,7 +36,7 @@ function SimpleSlider() {
             <p>{data.content}</p>
           </div>
           ))}
-        </Slider>
+        </div>
       )}
     </div>
   );

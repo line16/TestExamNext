@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const Navbar = () => {
+const AdminNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -26,24 +26,23 @@ const Navbar = () => {
 
           {/* Primary Navbar items */}
           <div className="hidden md:flex items-end space-x-1  font-semibold">
-            <Link href="/" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              HOME
+            <Link href="/ADMIN" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+              AdminHOME
             </Link>
             <Link href="/About" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              ABOUT
+              AdminABOUT
             </Link>
             <Link href="/Feature" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              FEATURE
+              AdminFEATURE
             </Link>
             <Link href="/Service" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              SERVICE
+              AdminSERVICE
             </Link>
             <Link href="/Contact" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              CONTACT
+              AdminCONTACT
             </Link>
-            <Link href="/ADMIN" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              Admin
-            </Link>
+            <Link href="/" className="py-5 px-3 text-gray-700 hover:text-rose-300">BACK TO PUBLIC</Link>
+          
           </div>
 
           {/* Mobile Button */}
@@ -107,4 +106,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;
