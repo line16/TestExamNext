@@ -1,22 +1,17 @@
-"use client"
-import React, { useEffect } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import useRequestData from "../../../../../Hooks/useRequestData";
-import { useParams } from "next/navigation";
+import useThumb from "../../../../../Hooks/useThumb";
 
+const EditTreatments = (params) => {
+  // Get ID from URL
+  const ID = params.searchParams.id;
 
-const EditTreatments = () => {
-  //tag id fra url
-  const { ID } = useParams();
-
-  //"GET"
   const { makeRequest, isLoading, data, error } = useRequestData();
 
-  //vis thumbnail
-//   const [thumb, makeThumb] = useThumb();
+  const [thumb, makeThumb] = useThumb();
 
-
-  //"PUT"
   const {
     makeRequest: makeRequestPUT,
     isLoading: isLoadingPUT,
@@ -24,158 +19,121 @@ const EditTreatments = () => {
     error: errorPUT,
   } = useRequestData();
 
+  // State for success message
+  const [showSuccess, setShowSuccess] = useState(false);
+
   useEffect(() => {
-    makeRequest("http://localhost:5029/appointment/admin/" + ID);
+    makeRequest("http://localhost:5029/treatment/" + ID);
   }, []);
 
   useEffect(() => {
     if (dataPUT) {
-      navigate("/admin/productsAdmin");
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000); // 3-second delay before navigating
     }
   }, [dataPUT]);
 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    if (data) {
+      setTitle(data.title);
+      setContent(data.content);
+      // setImage(data.image);
+    }
+  }, [data]);
+
   const handleSubmit = (e) => {
-    e.preventDefault(); //undgår siden reloader
-
+    e.preventDefault(); // Prevent page reload
     makeRequestPUT(
-      "http://127.0.0.1:5125/products/" + ID, "PUT", "null", e.target,
+      "http://localhost:5029/treatment/admin/" + ID,
+      "PUT",
+      "null",
+      e.target
     );
-
-    // Create a new FormData object
-    // const formData = new FormData(e.target);
-
-    // const coverImageFile = e.target.coverImage.files[0];
-    // if (coverImageFile) {
-    //   formData.append("coverImage", coverImageFile);
-    // }
   };
 
   return (
-    <div>
-      {/* {(isLoading || isLoadingPUT || isLoadingCAT) && <Loader />}
-      {(error || errorPUT || errorCAT) && <Error />} */}
+    <div className="min-h-screen p-6">
+      <div className="container mx-auto">
+        <h1 className="text-4xl text-center font-bold mb-8 text-gray-800">Edit Treatment</h1>
 
-      <h1 className="text-3xl text-center font-semibold m-3">Ret produkt:</h1>
-      <Link href="/" className="btn btn-accent">
-        Tilbage til oversigten
-      </Link>
+        {/* Back Button */}
+        <div className="mb-6">
+          <Link href="/ADMIN/AdminTreatments" className="text-rose-300 hover:underline text-xl">
+            &larr; Back to Overview
+          </Link>
+        </div>
 
-      {data && (
-        <form
-          onSubmit={handleSubmit}
-          className="form-control m-auto p-2 bg-gray-700 rounded-lg w-7/12"
-        >
-          <label className="p-2 text-center">
-            Navn på produkt: <br /> {data.title}
-            <input
-              className="rounded-md h-8 w-2/3 p-2"
-              type="text"
-              placeholder="Navn på Produkt"
-              name="productName"
-              defaultValue={data?.title}
-            />
-          </label>
+        {/* Success Popup */}
+        {showSuccess && (
+          <div className="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg">
+            Treatment successfully updated!
+          </div>
+        )}
 
-          <label className="p-2 text-center">
-            Pris på produkt: <br />
-            <input
-              type="number"
-              placeholder="Prisen på produktet"
-              name="price"
-              className="rounded-md h-8 w-2/3 p-2"
-            />
-          </label>
+        {/* Edit Form */}
+        {data && (
+          <form
+            onSubmit={handleSubmit}
+            className="bg-rose-50 shadow-lg rounded-lg p-8 max-w-4xl mx-auto"
+          >
+            <div className="mb-6">
+              <label className="block text-gray-700 text-lg font-semibold mb-2">
+                Title of the Treatment:
+              </label>
+              <input
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300"
+                type="text"
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Enter Treatment Title"
+              />
+            </div>
 
-          <label className="p-2 text-center">
-            Teaser tekst på produkt: <br />
-            <input
-              type="text"
-              placeholder="Lille beskrivelse til produktet"
-              name="teaser"
-              className="rounded-md h-8 w-2/3 p-2"
-            />
-          </label>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-lg font-semibold mb-2">
+                Description:
+              </label>
+              <textarea
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300"
+                name="content"
+                placeholder="Enter detailed description"
+                rows="5"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              ></textarea>
+            </div>
 
-          <label className="p-2 text-center">
-            Længere beskrivelse af produkt: <br />
-            <textarea
-              type="text"
-              placeholder="Beskrivelse til produktet"
-              name="description"
-              className="rounded-md w-2/3 p-2"
-            />
-          </label>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-lg font-semibold mb-2">
+                Upload Treatment Image:
+              </label>
+              <input
+                type="file"
+                name="image"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300"
+                onChange={(e) => makeThumb(e.target.files[0])}
+              />
+              {thumb && <div className="mt-4">{thumb}</div>}
+            </div>
 
-          <label className="p-2 text-center">
-            Rating af produkt: <br />
-            <input
-              type="number"
-              placeholder="Rating af produktet"
-              name="rating"
-              min={1}
-              max={5}
-              className="rounded-md h-8 w-2/3 p-2"
-            />
-          </label>
-
-          {/* KATEGORI */}
-          {/* <label className="p-2 text-center">
-            Vælg kategori <br />
-            <select
-              name="category"
-              className="rounded-md w-2/3 p-2"
-              defaultValue="default"
-            >
-              <option value="default" disabled>
-                vælg en kategori
-              </option>
-              {dataCAT &&
-                dataCAT.categories.map((c) => (
-                  <option value={c._id} key={c._id}>
-                    {c.categoryName}
-                  </option>
-                ))}
-            </select>
-          </label> */}
-
-          {/* DATO */}
-          <label className=" p-2 text-center">
-            Dato: <br />
-            <input
-              type="date"
-              name="created"
-              className="rounded-md w-2/3 p-2"
-            />
-          </label>
-
-          {/* BILLEDE */}
-          <label className="p-2 text-center">
-            Billede af produkt: <br />
-            <input
-              type="file"
-              name="coverImage"
-              className="rounded-md w-2/3 p-2"
-              onChange={(e) => makeThumb(e.target.files[0])}
-            />
-          </label>
-          {thumb && thumb}
-
-          {/* GALLERY */}
-          <label className="p-2 text-center">
-            Galleri billeder - max 3 pr. produkt <br />
-            <input
-              type="file"
-              name="gallery"
-              multiple
-              className="rounded-md w-2/3 p-2"
-            />
-          </label>
-
-          <button type="submit" className="btn btn-primary m-auto">
-            Ret dette produkt
-          </button>
-        </form>
-      )}
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="bg-rose-400 text-white px-6 py-3 rounded-md hover:bg-rose-500 transition duration-200"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
