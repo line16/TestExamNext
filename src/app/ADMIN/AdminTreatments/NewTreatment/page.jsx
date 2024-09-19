@@ -1,100 +1,109 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import useRequestData from "../../../../../Hooks/useRequestData";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 
-const Page = () => {
+const NewTreatments = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
 
-  // Hak en krog i quill-"textarea" + håndter toolbar
-  const refQuill = useRef(null);
-  const toolbarOptions = [
-    ["bold", "italic"],
-    [{ list: "ordered" }, { list: "bullet" }],
-  ];
+  // State for success message
+  const [showSuccess, setShowSuccess] = useState(false);
 
+  const formRef = useRef(null); // ref for the form
+
+  // Clear form on success
   useEffect(() => {
     if (data) {
-      // Tøm formularen, overvej at bruge en ref/useRef som Quill
-      document.forms[0].reset();
-      refQuill.current.getEditor().setText(""); // Tøm Quillfelt da den ikke er en del af formular
+      formRef.current.reset();
     }
   }, [data]);
 
   const handleSubmit = (s) => {
     s.preventDefault();
-  
-    let fd = new FormData(s.target); // Get the form data
-    fd.append("content", refQuill.current.getEditor().getText()); // Append content from Quill
-  
-    // Log all FormData fields
-    console.log("FormData contents:");
-    for (let [key, value] of fd.entries()) {
-      console.log(key, value);  // Logs each field and its value
-    }
-  
-    makeRequest("http://localhost:5029/treatment/admin", "POST", fd);
+
+    // Call the makeRequest function with the formData
+    makeRequest("http://localhost:5029/treatment/admin", "POST", s.target);
   };
-  
 
   return (
-    <div className="w-full min-h-screen bg-gray-100">
-      <div className="m-auto text-center w-10/12 h-auto rounded-md bg-white shadow-lg pb-6">
-        <h1 className="pt-20 text-center font-bold text-3xl mb-6">
-          Opret en ny service
+    <div className="min-h-screen p-6">
+      <div className="container mx-auto">
+        <h1 className="text-4xl text-center font-bold mb-8 text-gray-800">
+          New Treatment
         </h1>
 
-        <section className="w-full flex flex-col items-center">
-          <h2 className="font-medium text-2xl p-2 mb-6">Opret ny service</h2>
-          <form
-            onSubmit={handleSubmit}
-            className="w-full flex flex-col items-center"
+        {/* Back Button */}
+        <div className="mb-6">
+          <Link
+            href="/ADMIN/AdminTreatments"
+            className="text-rose-300 hover:underline text-xl"
           >
-            <label className="w-8/12 my-4 form-control text-left">
-              Service title:
-              <input
-                type="text"
-                name="title"
-                required
-                placeholder="title"
-                className="w-full input input-bordered bg-gray-200 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 rounded-md p-2 mt-2"
-              />
-            </label>
+            &larr; Back to Overview
+          </Link>
+        </div>
 
-            <label className="w-8/12 my-4 form-control text-left">
-              Service beskrivelse:
-            </label>
+        {/* Success Popup */}
+        {showSuccess && (
+          <div className="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg">
+            Treatment successfully updated!
+          </div>
+        )}
 
-            <ReactQuill
-              theme="snow"
+        <form
+          onSubmit={handleSubmit}
+          ref={formRef}
+          className="bg-rose-50 shadow-lg rounded-lg p-8 max-w-4xl mx-auto"
+        >
+          <div className="mb-6">
+            <label className="block text-gray-700 text-lg font-semibold mb-2">
+              Title of the Treatment:
+            </label>
+            <input
+              type="text"
+              name="title"
               required
-              modules={{ toolbar: toolbarOptions }}
-              ref={refQuill}
-              className="w-8/12 my-4"
-            ></ReactQuill>
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300"
+              placeholder="Enter Treatment Title"
+            />
+          </div>
 
-            {/* image */}
-            <label className="w-8/12 my-4 form-control text-left">
-              <input
-                type="file"
-                name="image"
-                required
-                className="w-full input input-bordered bg-gray-200 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 rounded-md p-2"
-              />
+          <div className="mb-6">
+            <label className="block text-gray-700 text-lg font-semibold mb-2">
+              Description:
             </label>
+            <textarea
+              name="content"
+              rows="5"
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300"
+              placeholder="Enter treatment description"
+            ></textarea>
+          </div>
 
+          <div className="mb-6">
+            <label className="block text-gray-700 text-lg font-semibold mb-2">
+              Upload Treatment Image:
+            </label>
+            <input
+              type="file"
+              name="image"
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-300"
+            />
+          </div>
+
+          <div className="flex justify-center">
             <button
               type="submit"
-              className="w-44 h-10 bg-lime-500 text-white rounded-md mt-4 hover:bg-lime-600 transition duration-200"
+              className="bg-rose-400 text-white px-6 py-3 rounded-md hover:bg-rose-500 transition duration-200"
             >
-              Opret ny service
+              Save Changes
             </button>
-          </form>
-        </section>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default NewTreatments;

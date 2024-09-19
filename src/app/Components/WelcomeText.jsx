@@ -25,7 +25,7 @@ const WelcomeText = () => {
   };
 
   return (
-    <div className="text-center lg:text-left px-10 lg:pt-28 pt-5">
+    <div className="text-left px-5 lg:px-10 lg:pt-28 pt-5">
       {data && (
         <div>
            <h3 className="text-rose-400">{data.title1}</h3>
@@ -38,7 +38,7 @@ const WelcomeText = () => {
         </div>
       )}
 
-      <div className="mt-8 flex justify-center lg:justify-start space-x-4">
+      <div className="mt-8 flex flex-wrap justify-center lg:justify-start space-x-4">
 
       <button className="bg-red-400 text-white px-6 py-3 shadow hover:bg-rose-300">
           Reserve Now

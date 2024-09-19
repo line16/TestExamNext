@@ -14,7 +14,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="m-auto bg-rose-100 h-auto p-10 text-center">
+    <footer className="m-auto bg-rose-50 h-auto p-10 text-center">
       <figure>
         <Image src="/logo.png" height={26} width={85} alt="logo"></Image>
       </figure>

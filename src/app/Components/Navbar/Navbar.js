@@ -53,7 +53,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               <svg
-                className="w-6 h-6 text-gray-700"
+                className="w-6 h-6 text-rose-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -72,7 +72,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-rose-50 m-5 z-50">
           <Link
             href="/"
             className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-700"
@@ -81,21 +81,21 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            href="/about"
+            href="/About"
             className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-700"
             onClick={toggleMenu}
           >
             About
           </Link>
           <Link
-            href="/services"
+            href="/Service"
             className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-700"
             onClick={toggleMenu}
           >
             Services
           </Link>
           <Link
-            href="/contact"
+            href="/Contact"
             className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-700"
             onClick={toggleMenu}
           >
