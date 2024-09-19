@@ -32,10 +32,7 @@ const AdminNavbar = () => {
             <Link href="/About" className="py-5 px-3 text-gray-700 hover:text-rose-300">
               AdminABOUT
             </Link>
-            <Link href="/Feature" className="py-5 px-3 text-gray-700 hover:text-rose-300">
-              AdminFEATURE
-            </Link>
-            <Link href="/Service" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link href="/ADMIN/AdminTreatments" className="py-5 px-3 text-gray-700 hover:text-rose-300">
               AdminSERVICE
             </Link>
             <Link href="/Contact" className="py-5 px-3 text-gray-700 hover:text-rose-300">

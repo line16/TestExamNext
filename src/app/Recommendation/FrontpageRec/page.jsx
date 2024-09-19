@@ -26,7 +26,7 @@ const ReviewSlider = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-row m-auto justify-center">
       {data &&
         data.map((p) => (
           <div
@@ -46,30 +46,7 @@ const ReviewSlider = () => {
             <p className="text-sm text-gray-600 mt-2 pt-4">{p.content}</p>
           </div>
         ))}
-      <div>ådejfåw</div>
-      {data && (
-        <Slider {...settings} className="w-5/12 h-3/4 z-50">
 
-          { data.map((p) => (
-              <div
-                key={p.id}
-                className="max-w-xs bg-white border border-gray-200 p-5 m-4"
-              >
-                <Image
-                  src={"http://localhost:5029/images/recommendation/" + p.image}
-                  width={250}
-                  height={250}
-                  alt="treatmentPhoto"
-                  className="rounded-t-lg"
-                  key={p._id}
-                />
-                <h3 className="text-lg font-semibold mt-4">{p.name}</h3>
-                <p className="text-sm text-gray-600 mt-2 pt-4">{p.title}</p>
-                <p className="text-sm text-gray-600 mt-2 pt-4">{p.content}</p>
-              </div>
-            ))}
-        </Slider>
-      )}
     </div>
   );
 };
