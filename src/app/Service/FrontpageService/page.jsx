@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useRequestData from "../../../../Hooks/useRequestData";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,21 +12,46 @@ const FrontpageService = () => {
     makeRequest("http://localhost:5029/treatment");
   }, []);
 
+  const getRandomElements = (array, numElements) => {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, numElements);
+  };
+
+  const { data: dataImg, isLoading: isLoadingImg, error: errorImg, makeRequest: makeRequestImg } = useRequestData();
+  
+  const [selectedImages, setSelectedImages] = useState([]);
+
+  useEffect(() => {
+    makeRequestImg("http://localhost:5029/treatment");
+  }, []);
+
+  useEffect(() => {
+    if (dataImg && dataImg.length > 0) {
+      const randomImages = getRandomElements(dataImg, 4);
+      setSelectedImages(randomImages);
+    }
+  }, [dataImg]);
+  
+  
   return (
     <>
       {/* random 4 pics */}
       <div className="flex flex-row justify-between items-center">
-        {data &&
-          data.slice(0, 4).map((e) => (
-            <figure key={e.id}>
+          {/* --- Display images --- */}
+          {selectedImages.map((e) => (
+          <div className="flex flex-row float-right" key={e.id}>
+            <figure>
               <Image
                 src={"http://localhost:5029/images/treatment/" + e.image}
-                width={350}
-                height={350}
-                alt="treatmentPhoto"
-              ></Image>
+                width={300}
+                height={250}
+                alt="photo"
+                className="object-cover"
+              />
             </figure>
-          ))}
+          </div>
+        ))}
+        {/* --- image END --- */}
       </div>
       <section className="text-center p-5">
       <h3 className="font-semibold text-3xl p-2" >

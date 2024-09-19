@@ -1,45 +1,77 @@
 "use client";
-import React, { useEffect } from "react";
-import useRequestData from "../../../../Hooks/useRequestData";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./sliderStyles.css";
 
 import Slider from "react-slick";
+import React, { useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import useRequestData from "../../../../Hooks/useRequestData";
 
-function SimpleSlider() {
+const ReviewSlider = () => {
   const { data, isLoading, error, makeRequest } = useRequestData();
 
   useEffect(() => {
-    makeRequest("http://localhost:5029/recommendation/");
+    makeRequest("   http://localhost:5029/recommendation/antal/3");
   }, []);
 
-  return (
-    <div className="bg-rose-50">
-      {/* <Slider {...settings}>
-        {data &&
-          data.map((e) => (
-            <div className="" key={e.id}>
-              <div className="">
-                <h3 className="">
-                  {e.name} {e.title}
-                </h3>
-                <p>{e.content}</p>
-              </div>
-            </div>
-          ))}
-      </Slider> */}
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
-      {data && (
-        <div>
-          {data.map((data) =>(
-          <div key={data._id}>
-            <p>{data.name}</p>
-            <p>{data.title}</p>
-            <p>{data.content}</p>
+  return (
+    <div>
+      {data &&
+        data.map((p) => (
+          <div
+            key={p.id}
+            className="max-w-xs bg-white border border-gray-200 p-5 m-4"
+          >
+            <Image
+              src={"http://localhost:5029/images/recommendation/" + p.image}
+              width={250}
+              height={250}
+              alt="treatmentPhoto"
+              className="rounded-t-lg"
+              key={p._id}
+            />
+            <h3 className="text-lg font-semibold mt-4">{p.name}</h3>
+            <p className="text-sm text-gray-600 mt-2 pt-4">{p.title}</p>
+            <p className="text-sm text-gray-600 mt-2 pt-4">{p.content}</p>
           </div>
-          ))}
-        </div>
+        ))}
+      <div>ådejfåw</div>
+      {data && (
+        <Slider {...settings} className="w-5/12 h-3/4 z-50">
+
+          { data.map((p) => (
+              <div
+                key={p.id}
+                className="max-w-xs bg-white border border-gray-200 p-5 m-4"
+              >
+                <Image
+                  src={"http://localhost:5029/images/recommendation/" + p.image}
+                  width={250}
+                  height={250}
+                  alt="treatmentPhoto"
+                  className="rounded-t-lg"
+                  key={p._id}
+                />
+                <h3 className="text-lg font-semibold mt-4">{p.name}</h3>
+                <p className="text-sm text-gray-600 mt-2 pt-4">{p.title}</p>
+                <p className="text-sm text-gray-600 mt-2 pt-4">{p.content}</p>
+              </div>
+            ))}
+        </Slider>
       )}
     </div>
   );
-}
+};
 
-export default SimpleSlider;
+export default ReviewSlider;
