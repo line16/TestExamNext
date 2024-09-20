@@ -19,39 +19,59 @@ const Navbar = () => {
             {/* Logo */}
             <div>
               <Link href="/" className="flex items-center py-5 px-2">
-                <Image src="/logo.png" width={65} height={65} alt="logo"></Image>
+                <Image
+                  src="/logo.png"
+                  width={65}
+                  height={65}
+                  alt="logo"
+                ></Image>
               </Link>
             </div>
           </div>
 
           {/* Primary Navbar items */}
           <div className="hidden md:flex items-end space-x-1  font-semibold">
-            <Link href="/" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link
+              href="/"
+              className="py-5 px-3 text-gray-700 hover:text-rose-300"
+            >
               HOME
             </Link>
-            <Link href="/About" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link
+              href="/About"
+              className="py-5 px-3 text-gray-700 hover:text-rose-300"
+            >
               ABOUT
             </Link>
-            <Link href="/Feature" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link
+              href="/Feature"
+              className="py-5 px-3 text-gray-700 hover:text-rose-300"
+            >
               FEATURE
             </Link>
-            <Link href="/Service" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link
+              href="/Service"
+              className="py-5 px-3 text-gray-700 hover:text-rose-300"
+            >
               SERVICE
             </Link>
-            <Link href="/Contact" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link
+              href="/Contact"
+              className="py-5 px-3 text-gray-700 hover:text-rose-300"
+            >
               CONTACT
             </Link>
-            <Link href="/ADMIN" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link
+              href="/ADMIN"
+              className="py-5 px-3 text-gray-700 hover:text-rose-300"
+            >
               Admin
             </Link>
           </div>
 
           {/* Mobile Button */}
           <div className="md:hidden flex items-end">
-            <button
-              className="mobile-menu-button"
-              onClick={toggleMenu}
-            >
+            <button className="mobile-menu-button" onClick={toggleMenu}>
               <svg
                 className="w-6 h-6 text-rose-400"
                 fill="none"
@@ -62,7 +82,9 @@ const Navbar = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                  d={
+                    isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"
+                  }
                 />
               </svg>
             </button>
@@ -72,7 +94,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-rose-50 m-5 z-50">
+        <div className="md:hidden bg-rose-50 m-5 z-50 uppercase">
           <Link
             href="/"
             className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-700"
@@ -86,6 +108,13 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             About
+          </Link>
+          <Link
+            href="/Feature"
+            className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-700"
+            onClick={toggleMenu}
+          >
+            FEATURE
           </Link>
           <Link
             href="/Service"
