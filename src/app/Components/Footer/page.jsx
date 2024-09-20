@@ -29,20 +29,20 @@ const Footer = () => {
         </div>
       ) }
 
-      <ul className="font-semibold m-auto text-center pt-7 w-full flex flex-wrap">
-        <li className="inline p-5 ">
+      <ul className="hidden md:font-semibold md:m-auto md:text-center md:pt-7 md:w-5/12 md:justify-around items-center md:flex md:flex-wrap">
+        <li className="inline p-3 ">
           <Link href="/">HOME</Link>
         </li>
-        <li className="inline p-5">
+        <li className="inline p-3">
           <Link href="/About">ABOUT</Link>
         </li>
-        <li className="inline p-5">
+        <li className="inline p-3">
           <Link href="/Feature">FEATURE</Link>
         </li>
-        <li className="inline p-5">
+        <li className="inline p-3">
           <Link href="/Service">SERVICE</Link>
         </li>
-        <li className="inline p-5">
+        <li className="inline p-3">
           <Link href="/Contact">CONTACT</Link>
         </li>
       </ul>

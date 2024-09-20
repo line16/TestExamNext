@@ -26,8 +26,9 @@ const header = () => {
           className="lg:w-1/2 lg:block h-full bg-cover md:hidden sm:hidden hidden bg-right bg-no-repeat"
           style={{
             backgroundImage: `url("/spa.png")`,
-            height: '690px',
-            objectFit: 'contain'
+            minHeight: "690px",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
         </div>

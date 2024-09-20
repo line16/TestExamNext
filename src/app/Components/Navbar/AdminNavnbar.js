@@ -29,7 +29,7 @@ const AdminNavbar = () => {
             <Link href="/ADMIN" className="py-5 px-3 text-gray-700 hover:text-rose-300">
               AdminHOME
             </Link>
-            <Link href="/About" className="py-5 px-3 text-gray-700 hover:text-rose-300">
+            <Link href="/ADMIN/AdminAbout" className="py-5 px-3 text-gray-700 hover:text-rose-300">
               AdminABOUT
             </Link>
             <Link href="/ADMIN/AdminTreatments" className="py-5 px-3 text-gray-700 hover:text-rose-300">
